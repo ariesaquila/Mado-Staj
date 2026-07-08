@@ -28,22 +28,22 @@
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
-        /* --- Mobil Drawer İçin Özel Scroll Bar Tasarımı --- */
-        #mobile-menu::-webkit-scrollbar {
-            width: 5px; 
+        /* --- Mobil Drawer İçindeki Orta Alan İçin Özel Scroll Bar Tasarımı --- */
+        #mobile-menu-scrollable-content::-webkit-scrollbar {
+            width: 4px; /* Zarif ve ince scrollbar */
         }
-        #mobile-menu::-webkit-scrollbar-track {
-            background: rgba(21, 45, 98, 0.05); 
+        #mobile-menu-scrollable-content::-webkit-scrollbar-track {
+            background: rgba(21, 45, 98, 0.03);
         }
-        .dark #mobile-menu::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
+        .dark #mobile-menu-scrollable-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.03);
         }
-        #mobile-menu::-webkit-scrollbar-thumb {
-            background: #62152d; 
+        #mobile-menu-scrollable-content::-webkit-scrollbar-thumb {
+            background: #62152d;
             border-radius: 10px;
         }
-        .dark #mobile-menu::-webkit-scrollbar-thumb {
-            background: #A67C00; 
+        .dark #mobile-menu-scrollable-content::-webkit-scrollbar-thumb {
+            background: #A67C00;
         }
     </style>
 </head>
@@ -146,7 +146,7 @@
                             </div>
                         </div>
                         <p class="text-sm sm:text-base text-[#000000]/70 dark:text-[#f1f1f1]/70 leading-relaxed font-light">
-                            Yaşar Pastanesi, başta bir dunya markası olan MADO olmak üzere Marax, Marpop, Icemar, MADO Dondurma ve Künefeci gibi markaları çatısı altında bulunduran Yaşar Dondurma'nın ilk dükkanıdır. Bu nedenle Yaşar Pastanesi, Kahramanmaraş lezzetlerinin ülkemizde og dünyada tanınması ve sevilmesine öncülük eden markaların beşiği konumundadır.
+                            Yaşar Pastanesi, başta bir dunya markası olan MADO olmak üzere Marax, Marpop, Icemar, MADO Dondurma ve Künefeci gibi markaları çatısı altında bulunduran Yaşar Dondurma'nın ilk dükkanıdır. Bu nedenle Yaşar Pastanesi, Kahramanmaraş lezzetlerinin ülkemizde ve dünyada tanınması ve sevilmesine öncülük eden markaların beşiği konumundadır.
                         </p>
                         <a href="https://i.ibb.co/dJ4pZLfb/dondurma.png" class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-[#F25C05] hover:underline">
                             Hikayenin Devamı <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
@@ -191,7 +191,7 @@
 
                     <div class="space-y-6">
                         <p class="text-sm sm:text-base text-[#000000]/70 dark:text-[#f1f1f1]/70 leading-relaxed font-light">
-                            Bu Özelliği nedeniyle Kahramanmaraş'ın simgelerinden biri olan Yaşar Pastanesi'nde, aynı zamanda Maraş Dondurması'nı üne kavuşturan sırrın serüveni de sergileniyor. Maraş Dondurması'na haklı ününü veren "dövme ustalığı", Yaşar Pastanesi ziyaretçilerine uygulamalı şovlar ile gösteriliyor. Maraş Dondurması'nın meşhur kıvamının nasıl ortaya çıktığı folklorik bilgilerle ziyaretçilere aktarılıyor. Başta dondurma olmak üzere Maraş Mutfağı'nın eşsiz lezzetlerini ve Maraş kültürünü yerli yabancı tüm ziyaretçilere tanıtma ve sevdirmeyi görev edinen Yaşar Pastanesi, gerek lezzetleri gerek sunumları gerekse de misafirperverliğiyle ziyaretçilerini en iyi şekilde ağırlamaktadır.
+                            Bu özelliği nedeniyle Kahramanmaraş'ın simgelerinden biri olan Yaşar Pastanesi'nde, aynı zamanda Maraş Dondurması'nı üne kavuşturan sırrın serüveni de sergileniyor. Maraş Dondurması'na haklı ününü veren "dövme ustalığı", Yaşar Pastanesi ziyaretçilerine uygulamalı şovlar ile gösteriliyor. Maraş Dondurması'nın meşhur kıvamının nasıl ortaya çıktığı folklorik bilgilerle ziyaretçilere aktarılıyor. Başta dondurma olmak üzere Maraş Mutfağı'nın eşsiz lezzetlerini ve Maraş kültürünü yerli yabancı tüm ziyaretçilere tanıtma ve sevdirmeyi görev edinen Yaşar Pastanesi, gerek lezzetleri gerek sunumları gerekse de misafirperverliğiyle ziyaretçilerini en iyi şekilde ağırlamaktadır.
                         </p>
                         
                         <div class="w-full h-56 bg-[#E2E3E8]/30 dark:bg-[#ffffff]/10 rounded-2xl border border-[#152D62]/10 flex items-center justify-center relative overflow-hidden p-4 group">
@@ -299,10 +299,10 @@
                         <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-transparent xl:border-[#152D62]/10 dark:border-[#152D62]/20 xl:pb-2 w-full">Üye</h4>
                         <i class="fa-solid fa-chevron-down text-xs text-[#152D62]/50 dark:text-[#f1f1f1]/50 xl:hidden transition-transform duration-200"></i>
                     </button>
-                    <ul class="footer-accordion-content hidden xl:block space-y-2.5 text-[#152D62]/80 dark:text-[#f1f1f1]/70 font-light mt-2 xl:mt-0">
+                    <nav class="footer-accordion-content hidden xl:block space-y-2.5 text-[#152D62]/80 dark:text-[#f1f1f1]/70 font-light mt-2 xl:mt-0">
                         <li><a href="#" class="hover:text-[#62152d] transition-colors">Yeni Üyelik</a></li>
                         <li><a href="#" class="hover:text-[#62152d] transition-colors">Üye Girişi</a></li>
-                    </ul>
+                    </nav>
                 </div>
 
                 <div class="xl:col-span-2 space-y-6 pt-2 xl:pt-0 xl:pl-4">
@@ -321,13 +321,13 @@
                         <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-[#152D62]/10 dark:border-[#152D62]/20 pb-2">Sosyal Medya</h4>
                         <p class="text-[#000000]/60 dark:text-[#f1f1f1]/60 text-xs font-light">Sosyal medyaya özel indirim ve kampanyalardan ilk sen haberdar ol, fırsatları yakala!</p>
                         <div class="flex items-center space-x-3 pt-1">
-                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#A67C00] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
+                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#F25C05] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
                                 <i class="fa-brands fa-instagram text-sm"></i>
                             </a>
-                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#A67C00] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
+                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#F25C05] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
                                 <i class="fa-brands fa-facebook-f text-sm"></i>
                             </a>
-                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#A67C00] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
+                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#F25C05] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
                                 <i class="fa-brands fa-twitter text-sm"></i>
                             </a>
                         </div>
@@ -350,21 +350,22 @@
 
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#000000]/60 backdrop-blur-sm z-[90] hidden opacity-0 transition-opacity duration-300 xl:hidden"></div>
 
-    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-[290px] sm:w-[340px] bg-[#ffffff] dark:bg-[#000000] z-[100] shadow-2xl invisible translate-x-full transition-all duration-300 ease-in-out p-5 flex flex-col justify-between border-l border-[#152D62]/10 dark:border-[#152D62]/20 xl:hidden overflow-y-auto">
+    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-[290px] sm:w-[340px] bg-[#ffffff] dark:bg-[#000000] z-[100] shadow-2xl invisible translate-x-full transition-all duration-300 ease-in-out flex flex-col justify-between border-l border-[#152D62]/10 dark:border-[#152D62]/20 xl:hidden">
         
-        <div class="space-y-6 w-full shrink-0">
-            <div class="flex items-center justify-between border-b border-[#152D62]/10 dark:border-[#152D62]/20 pb-3">
+        <div class="p-5 pb-4 border-b border-[#152D62]/10 dark:border-[#152D62]/20 shrink-0 w-full bg-[#ffffff] dark:bg-[#000000] space-y-4">
+            <div class="flex items-center justify-between">
                 <span class="text-xl font-black tracking-wider text-[#152D62] dark:text-[#f1f1f1]">MADO</span>
                 <button id="menu-close-btn" class="text-[#152D62] dark:text-[#f1f1f1] hover:text-[#62152d] focus:outline-none p-1">
                     <i class="fa-solid fa-xmark text-2xl"></i>
                 </button>
             </div>
-
             <form class="relative w-full">
                 <input type="text" placeholder="Ürün veya lezzet ara..." class="w-full bg-[#f1f1f1] dark:bg-[#152D62]/20 text-sm text-[#000000] dark:text-[#f1f1f1] placeholder-[#000000]/40 dark:placeholder-[#f1f1f1]/40 pl-10 pr-4 py-2.5 rounded-xl border border-[#152D62]/10 dark:border-[#152D62]/30 focus:outline-none focus:border-[#A67C00] transition-colors">
                 <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-[#000000]/40 dark:text-[#f1f1f1]/40"></i>
             </form>
+        </div>
 
+        <div id="mobile-menu-scrollable-content" class="flex-grow overflow-y-auto px-5 py-4 w-full">
             <nav class="flex flex-col space-y-1">
                 <a href="#tarihce" class="mobile-link block py-2.5 px-4 text-sm font-medium text-[#152D62]/80 dark:text-[#f1f1f1]/80 hover:text-[#A67C00] dark:hover:text-[#62152d] hover:bg-[#152D62]/5 dark:hover:bg-[#152D62]/10 rounded-xl transition-all">Tarihçe</a>
                 <a href="#dondurmalar" class="mobile-link block py-2.5 px-4 text-sm font-medium text-[#152D62]/80 dark:text-[#f1f1f1]/80 hover:text-[#A67C00] dark:hover:text-[#62152d] hover:bg-[#152D62]/5 dark:hover:bg-[#152D62]/10 rounded-xl transition-all">Dondurmalar</a>
@@ -373,8 +374,8 @@
             </nav>
         </div>
         
-        <div class="space-y-3 border-t border-[#152D62]/10 dark:border-[#152D62]/20 pt-4 mt-8 shrink-0 w-full">
-            <div class="grid grid-cols-2 gap-2 text-center">
+        <div class="p-5 border-t border-[#152D62]/10 dark:border-[#152D62]/20 shrink-0 w-full bg-[#ffffff] dark:bg-[#000000]">
+            <div class="grid grid-cols-2 gap-2 text-center mb-3">
                 <button id="login-open-btn-mobile" class="border border-[#152D62]/20 dark:border-[#152D62]/40 text-xs font-bold py-2.5 rounded-xl hover:bg-[#f1f1f1] dark:hover:bg-[#152D62]/20 transition-all flex items-center justify-center gap-1.5 text-[#000000] dark:text-[#f1f1f1]">
                     <i class="fa-regular fa-user"></i> Giriş Yap
                 </button>
@@ -560,7 +561,7 @@
         });
 
 
-        // --- FOOTER AKORDEON MOBİL ---
+        // --- MOBİL FOOTER AKORDEON (HAMBURGER) MANTIĞI ---
         const accordionButtons = document.querySelectorAll('.footer-accordion-btn');
         
         accordionButtons.forEach(button => {
