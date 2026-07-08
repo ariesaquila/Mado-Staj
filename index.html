@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mado Beyazı Çiftliği</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Sayfa yüklenirken kullanıcının daha önceki tema tercihini kontrol et
@@ -20,9 +19,7 @@
             darkMode: 'class'
         }
     </script>
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -31,14 +28,29 @@
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
+        /* --- Mobil Drawer İçin Özel Scroll Bar Tasarımı --- */
+        #mobile-menu::-webkit-scrollbar {
+            width: 5px; 
+        }
+        #mobile-menu::-webkit-scrollbar-track {
+            background: rgba(21, 45, 98, 0.05); 
+        }
+        .dark #mobile-menu::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        #mobile-menu::-webkit-scrollbar-thumb {
+            background: #62152d; 
+            border-radius: 10px;
+        }
+        .dark #mobile-menu::-webkit-scrollbar-thumb {
+            background: #A67C00; 
+        }
     </style>
 </head>
 <body class="bg-[#f1f1f1] text-[#000000] dark:bg-[#0A0A0A] dark:text-[#f1f1f1] antialiased min-h-screen flex flex-col transition-colors duration-300">
 
-    <!-- Header / Navbar -->
     <header class="border-b border-[#152D62]/10 dark:border-[#152D62]/30 bg-[#ffffff]/90 dark:bg-[#000000]/80 backdrop-blur-md sticky top-0 z-50 shadow-sm transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-            <!-- Logo -->
             <a href="#" class="flex items-center space-x-2 group shrink-0">
                 <span class="text-2xl font-black tracking-wider text-[#152D62] dark:text-[#f1f1f1] group-hover:text-[#838383] transition-colors">
                     <p style="font-size: 30px; text-align: center;">MADO</p>
@@ -46,7 +58,6 @@
                 </span>
             </a>
 
-            <!-- Desktop Navigation -->
             <nav class="hidden xl:flex items-center space-x-8 text-sm font-medium tracking-wide">
                 <a href="#tarihce" class="hover:text-[#A67C00] text-[#62152d]/80 dark:text-[#A67C00]/80 transition-colors">Tarihçe</a>
                 <a href="#dondurmalar" class="hover:text-[#A67C00] text-[#62152d]/80 dark:text-[#A67C00]/80 transition-colors">Dondurmalar</a>
@@ -54,15 +65,12 @@
                 <a href="#yöresel-sepet" class="hover:text-[#A67C00] text-[#62152d]/80 dark:text-[#A67C00]/80 transition-colors">Yöresel Sepet</a>
             </nav>
 
-            <!-- Right Controls (Search + Auth + Theme Toggle + CTA) -->
             <div class="hidden md:flex items-center space-x-4 flex-grow justify-end max-w-2xl">
-                <!-- Masaüstü Arama Kutucuğu -->
                 <form class="relative w-full max-w-[160px] lg:max-w-[200px]">
                     <input type="text" placeholder="Lezzet ara..." class="w-full bg-[#f1f1f1]/80 dark:bg-[#152D62]/20 text-xs text-[#000000] dark:text-[#f1f1f1] placeholder-[#000000]/40 dark:placeholder-[#f1f1f1]/40 pl-9 pr-3 py-2.5 rounded-xl border border-[#152D62]/10 dark:border-[#152D62]/30 focus:outline-none focus:border-[#A67C00] dark:focus:border-[#A67C00] transition-colors">
                     <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-xs text-[#000000]/40 dark:text-[#f1f1f1]/40"></i>
                 </form>
 
-                <!-- Üye Giriş / Kayıt Linkleri -->
                 <div class="flex items-center space-x-3 text-xs font-semibold tracking-wide shrink-0">
                     <button id="login-open-btn" class="text-[#152D62]/80 dark:text-[#f1f1f1]/80 hover:text-[#A67C00] dark:hover:text-[#A67C00] transition-colors flex items-center gap-1.5 py-2 focus:outline-none">
                         <i class="fa-regular fa-user text-sm"></i> Giriş Yap
@@ -73,7 +81,6 @@
                     </button>
                 </div>
 
-                <!-- Dark Mode Butonu -->
                 <button id="theme-toggle" class="text-[#152D62] dark:text-[#f1f1f1] hover:text-[#A67C00] dark:hover:text-[#62152d] text-lg p-2.5 rounded-lg border border-[#152D62]/10 dark:border-[#152D62]/30 bg-[#f1f1f1]/50 dark:bg-[#152D62]/20 transition-all shrink-0">
                     <i id="theme-toggle-dark-icon" class="hidden fa-solid fa-moon"></i>
                     <i id="theme-toggle-light-icon" class="hidden fa-solid fa-sun"></i>
@@ -84,14 +91,11 @@
                 </a>
             </div>
 
-            <!-- Mobile Action Row -->
             <div class="flex items-center space-x-2 md:hidden">
-                <!-- Mobil Dark Mode Butonu -->
                 <button id="theme-toggle-mobile" class="text-[#152D62] dark:text-[#f1f1f1] hover:text-[#A67C00] dark:hover:text-[#62152d] text-lg p-2 rounded-lg">
                     <i id="theme-toggle-dark-icon-m" class="hidden fa-solid fa-moon"></i>
                     <i id="theme-toggle-light-icon-m" class="hidden fa-solid fa-sun"></i>
                 </button>
-                <!-- Mobile Menu Button -->
                 <button id="menu-btn" class="text-[#152D62] dark:text-[#f1f1f1] hover:text-[#A67C00] dark:hover:text-[#62152d] focus:outline-none p-2">
                     <i class="fa-solid fa-bars text-2xl"></i>
                 </button>
@@ -99,7 +103,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#ffffff] dark:bg-[#000000] transition-colors duration-300">
         <div class="absolute inset-0 z-0">
             <img src="int2.png" alt="Mado Gerçek Lezzet Arka Plan" class="w-full h-full object-cover select-none pointer-events-none">
@@ -129,11 +132,9 @@
         </div>
     </section>
 
-    <!-- Tarihçe / Hikaye Section (Optimize Edilmiş Boşluk) -->
     <section id="tarihce" class="pt-24 pb-12 bg-[#f1f1f1] dark:bg-[#0A0A0A] transition-colors duration-300 border-t border-[#152D62]/10 dark:border-[#152D62]/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-[#ffffff] dark:bg-[#000000] rounded-3xl border border-[#152D62]/10 dark:border-[#152D62]/20 shadow-2xl p-6 sm:p-12 lg:p-16 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-                <!-- SOL BLOK -->
                 <div class="space-y-12">
                     <div class="space-y-6">
                         <div class="flex items-start justify-between gap-4">
@@ -145,7 +146,7 @@
                             </div>
                         </div>
                         <p class="text-sm sm:text-base text-[#000000]/70 dark:text-[#f1f1f1]/70 leading-relaxed font-light">
-                            Yaşar Pastanesi, başta bir dunya markası olan MADO olmak üzere Marax, Marpop, Icemar, MADO Dondurma og Künefeci gibi markaları çatısı altında bulunduran Yaşar Dondurma'nın ilk dükkanıdır. Bu nedenle Yaşar Pastanesi, Kahramanmaraş lezzetlerinin ülkemizde ve dünyada tanınması ve sevilmesine öncülük eden markaların beşiği konumundadır.
+                            Yaşar Pastanesi, başta bir dunya markası olan MADO olmak üzere Marax, Marpop, Icemar, MADO Dondurma ve Künefeci gibi markaları çatısı altında bulunduran Yaşar Dondurma'nın ilk dükkanıdır. Bu nedenle Yaşar Pastanesi, Kahramanmaraş lezzetlerinin ülkemizde og dünyada tanınması ve sevilmesine öncülük eden markaların beşiği konumundadır.
                         </p>
                         <a href="https://i.ibb.co/dJ4pZLfb/dondurma.png" class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-[#F25C05] hover:underline">
                             Hikayenin Devamı <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
@@ -166,7 +167,6 @@
                     </div>
                 </div>
 
-                <!-- SAĞ BLOK -->
                 <div class="space-y-8 lg:border-l lg:border-[#152D62]/10 dark:lg:border-[#152D62]/20 lg:pl-12">
                     <div class="space-y-4">
                         <h2 class="text-3xl sm:text-4xl font-bold text-[#152D62] dark:text-[#f1f1f1] tracking-tight">Yaşar Pastanesi</h2>
@@ -191,7 +191,7 @@
 
                     <div class="space-y-6">
                         <p class="text-sm sm:text-base text-[#000000]/70 dark:text-[#f1f1f1]/70 leading-relaxed font-light">
-                            Bu özelliği nedeniyle Kahramanmaraş'ın simgelerinden biri olan Yaşar Pastanesi'nde, aynı zamanda Maraş Dondurması'nı üne kavuşturan sırrın serüveni de sergileniyor. Maraş Dondurması'na haklı ününü veren "dövme ustalığı", Yaşar Pastanesi ziyaretçilerine uygulamalı şovlar ile gösteriliyor. Maraş Dondurması'nın meşhur kıvamının nasıl ortaya çıktığı folklorik bilgilerle ziyaretçilere aktarılıyor. Başta dondurma olmak üzere Maraş Mutfağı'nın eşsiz lezzetlerini ve Maraş kültürünü yerli yabancı tüm ziyaretçilere tanıtma ve sevdirmeyi görev edinen Yaşar Pastanesi, gerek lezzetleri gerek sunumları gerekse de misafirperverliğiyle ziyaretçilerini en iyi şekilde ağırlamaktadır.
+                            Bu Özelliği nedeniyle Kahramanmaraş'ın simgelerinden biri olan Yaşar Pastanesi'nde, aynı zamanda Maraş Dondurması'nı üne kavuşturan sırrın serüveni de sergileniyor. Maraş Dondurması'na haklı ününü veren "dövme ustalığı", Yaşar Pastanesi ziyaretçilerine uygulamalı şovlar ile gösteriliyor. Maraş Dondurması'nın meşhur kıvamının nasıl ortaya çıktığı folklorik bilgilerle ziyaretçilere aktarılıyor. Başta dondurma olmak üzere Maraş Mutfağı'nın eşsiz lezzetlerini ve Maraş kültürünü yerli yabancı tüm ziyaretçilere tanıtma ve sevdirmeyi görev edinen Yaşar Pastanesi, gerek lezzetleri gerek sunumları gerekse de misafirperverliğiyle ziyaretçilerini en iyi şekilde ağırlamaktadır.
                         </p>
                         
                         <div class="w-full h-56 bg-[#E2E3E8]/30 dark:bg-[#ffffff]/10 rounded-2xl border border-[#152D62]/10 flex items-center justify-center relative overflow-hidden p-4 group">
@@ -204,7 +204,6 @@
         </div>
     </section>
 
-    <!-- Dondurmalar / Serüven Showcase Section (Optimize Edilmiş Boşluk) -->
     <section id="dondurmalar" class="pt-12 pb-24 bg-[#ffffff] dark:bg-[#000000] transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 space-y-2">
@@ -249,17 +248,13 @@
         </div>
     </section>
 
-    <!-- Geniş Alt Bilgi & E-Bülten Bölümü (Responsive Mobil Akordeon Yapı) -->
     <section id="iletisim" class="relative py-20 bg-[#f1f1f1] dark:bg-[#000000] overflow-hidden border-t border-[#62152d]/10 dark:border-[#62152d]/20 transition-colors duration-300">
         <div class="absolute inset-0 opacity-5 dark:opacity-[0.03] mix-blend-multiply dark:mix-blend-luminosity pointer-events-none bg-[url('https://images2.imgbox.com/71/29/wZ9C2gK2_o.jpg')] bg-cover bg-center"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <!-- xl:grid-cols-6 ile masaüstü korundu; mobilde dikey akış sağlandı -->
             <div class="grid grid-cols-1 xl:grid-cols-6 gap-6 xl:gap-8 text-sm">
                 
-                <!-- Sütun 1: Kategoriler -->
                 <div class="space-y-2 xl:space-y-4 border-b border-[#152D62]/10 dark:border-[#152D62]/20 xl:border-b-0 pb-3 xl:pb-0">
-                    <!-- Mobil için buton, masaüstü için sabit başlık gibi davranan yapı -->
                     <button class="footer-accordion-btn w-full flex items-center justify-between xl:pointer-events-none text-left focus:outline-none group">
                         <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-transparent xl:border-[#152D62]/10 dark:border-[#152D62]/20 xl:pb-2 w-full">Kategoriler</h4>
                         <i class="fa-solid fa-chevron-down text-xs text-[#152D62]/50 dark:text-[#f1f1f1]/50 xl:hidden transition-transform duration-200"></i>
@@ -271,7 +266,6 @@
                     </ul>
                 </div>
 
-                <!-- Sütun 2: Önemli Bilgiler -->
                 <div class="space-y-2 xl:space-y-4 border-b border-[#152D62]/10 dark:border-[#152D62]/20 xl:border-b-0 pb-3 xl:pb-0">
                     <button class="footer-accordion-btn w-full flex items-center justify-between xl:pointer-events-none text-left focus:outline-none group">
                         <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-transparent xl:border-[#152D62]/10 dark:border-[#152D62]/20 xl:pb-2 w-full">Önemli Bilgiler</h4>
@@ -286,7 +280,6 @@
                     </ul>
                 </div>
 
-                <!-- Sütun 3: Hızlı Erişim -->
                 <div class="space-y-2 xl:space-y-4 border-b border-[#152D62]/10 dark:border-[#152D62]/20 xl:border-b-0 pb-3 xl:pb-0">
                     <button class="footer-accordion-btn w-full flex items-center justify-between xl:pointer-events-none text-left focus:outline-none group">
                         <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-transparent xl:border-[#152D62]/10 dark:border-[#152D62]/20 xl:pb-2 w-full">Hızlı Erişim</h4>
@@ -301,7 +294,6 @@
                     </ul>
                 </div>
 
-                <!-- Sütun 4: Üye -->
                 <div class="space-y-2 xl:space-y-4 border-b border-[#152D62]/10 dark:border-[#152D62]/20 xl:border-b-0 pb-3 xl:pb-0">
                     <button class="footer-accordion-btn w-full flex items-center justify-between xl:pointer-events-none text-left focus:outline-none group">
                         <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-transparent xl:border-[#152D62]/10 dark:border-[#152D62]/20 xl:pb-2 w-full">Üye</h4>
@@ -313,7 +305,6 @@
                     </ul>
                 </div>
 
-                <!-- Sütun 5 & 6: E-Bülten & Sosyal Medya -->
                 <div class="xl:col-span-2 space-y-6 pt-2 xl:pt-0 xl:pl-4">
                     <div class="space-y-3">
                         <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-[#152D62]/10 dark:border-[#152D62]/20 pb-2">E-BÜLTEN ABONELİĞİ</h4>
@@ -330,13 +321,13 @@
                         <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-[#152D62]/10 dark:border-[#152D62]/20 pb-2">Sosyal Medya</h4>
                         <p class="text-[#000000]/60 dark:text-[#f1f1f1]/60 text-xs font-light">Sosyal medyaya özel indirim ve kampanyalardan ilk sen haberdar ol, fırsatları yakala!</p>
                         <div class="flex items-center space-x-3 pt-1">
-                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#A67C00] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
+                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#F25C05] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
                                 <i class="fa-brands fa-instagram text-sm"></i>
                             </a>
-                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#A67C00] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
+                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#F25C05] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
                                 <i class="fa-brands fa-facebook-f text-sm"></i>
                             </a>
-                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#A67C00] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
+                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#F25C05] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
                                 <i class="fa-brands fa-twitter text-sm"></i>
                             </a>
                         </div>
@@ -346,7 +337,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-[#ffffff] dark:bg-[#000000] border-t border-[#152D62]/10 dark:border-[#152D62]/20 py-8 text-xs text-[#000000]/40 dark:text-[#f1f1f1]/40 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>&copy; 2026 MADO. Tüm Hakları Saklıdır.</div>
@@ -358,12 +348,10 @@
     </footer>
 
 
-    <!-- ========================================== -->
-    <!-- MOBİL DRAWER MENÜ YAPISI                   -->
-    <!-- ========================================== -->
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#000000]/60 backdrop-blur-sm z-[90] hidden opacity-0 transition-opacity duration-300 xl:hidden"></div>
 
-    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-[290px] sm:w-[340px] bg-[#ffffff] dark:bg-[#000000] z-[100] shadow-2xl invisible translate-x-full transition-all duration-300 ease-in-out p-5 flex flex-col justify-between border-l border-[#152D62]/10 dark:border-[#152D62]/20 xl:hidden">
+    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-[290px] sm:w-[340px] bg-[#ffffff] dark:bg-[#000000] z-[100] shadow-2xl invisible translate-x-full transition-all duration-300 ease-in-out p-5 flex flex-col justify-between border-l border-[#152D62]/10 dark:border-[#152D62]/20 xl:hidden overflow-y-auto">
+        
         <div class="space-y-6 w-full shrink-0">
             <div class="flex items-center justify-between border-b border-[#152D62]/10 dark:border-[#152D62]/20 pb-3">
                 <span class="text-xl font-black tracking-wider text-[#152D62] dark:text-[#f1f1f1]">MADO</span>
@@ -371,10 +359,12 @@
                     <i class="fa-solid fa-xmark text-2xl"></i>
                 </button>
             </div>
+
             <form class="relative w-full">
                 <input type="text" placeholder="Ürün veya lezzet ara..." class="w-full bg-[#f1f1f1] dark:bg-[#152D62]/20 text-sm text-[#000000] dark:text-[#f1f1f1] placeholder-[#000000]/40 dark:placeholder-[#f1f1f1]/40 pl-10 pr-4 py-2.5 rounded-xl border border-[#152D62]/10 dark:border-[#152D62]/30 focus:outline-none focus:border-[#A67C00] transition-colors">
                 <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-[#000000]/40 dark:text-[#f1f1f1]/40"></i>
             </form>
+
             <nav class="flex flex-col space-y-1">
                 <a href="#tarihce" class="mobile-link block py-2.5 px-4 text-sm font-medium text-[#152D62]/80 dark:text-[#f1f1f1]/80 hover:text-[#A67C00] dark:hover:text-[#62152d] hover:bg-[#152D62]/5 dark:hover:bg-[#152D62]/10 rounded-xl transition-all">Tarihçe</a>
                 <a href="#dondurmalar" class="mobile-link block py-2.5 px-4 text-sm font-medium text-[#152D62]/80 dark:text-[#f1f1f1]/80 hover:text-[#A67C00] dark:hover:text-[#62152d] hover:bg-[#152D62]/5 dark:hover:bg-[#152D62]/10 rounded-xl transition-all">Dondurmalar</a>
@@ -382,7 +372,8 @@
                 <a href="#yöresel-sepet" class="mobile-link block py-2.5 px-4 text-sm font-medium text-[#152D62]/80 dark:text-[#f1f1f1]/80 hover:text-[#A67C00] dark:hover:text-[#62152d] hover:bg-[#152D62]/5 dark:hover:bg-[#152D62]/10 rounded-xl transition-all">Yöresel Sepet</a>
             </nav>
         </div>
-        <div class="space-y-3 border-t border-[#152D62]/10 dark:border-[#152D62]/20 pt-4 mt-auto shrink-0 w-full">
+        
+        <div class="space-y-3 border-t border-[#152D62]/10 dark:border-[#152D62]/20 pt-4 mt-8 shrink-0 w-full">
             <div class="grid grid-cols-2 gap-2 text-center">
                 <button id="login-open-btn-mobile" class="border border-[#152D62]/20 dark:border-[#152D62]/40 text-xs font-bold py-2.5 rounded-xl hover:bg-[#f1f1f1] dark:hover:bg-[#152D62]/20 transition-all flex items-center justify-center gap-1.5 text-[#000000] dark:text-[#f1f1f1]">
                     <i class="fa-regular fa-user"></i> Giriş Yap
@@ -391,18 +382,17 @@
                     Üye Ol
                 </button>
             </div>
+
             <a href="#iletisim" class="mobile-link block w-full text-center bg-[#A67C00] hover:bg-[#62152d]/90 text-[#f1f1f1] py-3 rounded-xl font-bold text-xs tracking-wide transition-all shadow-md shadow-[#A67C00]/10">
-                Bizimle İletişime Geç
+                    Bizimle İletişime Geç
             </a>
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- GİRİŞ MODAL ALANI                          -->
-    <!-- ========================================== -->
+
     <div id="login-modal" class="hidden fixed inset-0 z-[110] flex items-center justify-center p-4">
         <div id="login-modal-overlay" class="absolute inset-0 bg-[#000000]/60 backdrop-blur-sm"></div>
-        <div class="w-full max-w-md bg-[#ffffff] dark:bg-[#000000] rounded-3xl border border-[#152D62]/10 dark:border-[#152D62]/20 shadow-2xl p-8 sm:p-10 transition-colors duration-300 z-10 relative">
+        <div class="w-full max-w-md bg-[#ffffff] dark:bg-[#000000] rounded-3xl border border-[#152D62]/10 dark:border-[#152D62]/20 shadow-2xl p-8 sm:p-10 z-10 relative">
             <button id="login-close-btn" class="absolute top-5 right-5 text-[#152D62] dark:text-[#f1f1f1] hover:text-[#62152d] dark:hover:text-[#A67C00] transition-colors p-1">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
@@ -443,12 +433,9 @@
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- KAYIT OL MODAL ALANI                       -->
-    <!-- ========================================== -->
     <div id="register-modal" class="hidden fixed inset-0 z-[110] flex items-center justify-center p-4">
         <div id="register-modal-overlay" class="absolute inset-0 bg-[#000000]/60 backdrop-blur-sm"></div>
-        <div class="w-full max-w-md bg-[#ffffff] dark:bg-[#000000] rounded-3xl border border-[#152D62]/10 dark:border-[#152D62]/20 shadow-2xl p-8 sm:p-10 transition-colors duration-300 z-10 relative max-h-[95vh] overflow-y-auto">
+        <div class="w-full max-w-md bg-[#ffffff] dark:bg-[#000000] rounded-3xl border border-[#152D62]/10 dark:border-[#152D62]/20 shadow-2xl p-8 sm:p-10 relative max-h-[95vh] overflow-y-auto z-10">
             <button id="register-close-btn" class="absolute top-5 right-5 text-[#152D62] dark:text-[#f1f1f1] hover:text-[#62152d] dark:hover:text-[#A67C00] transition-colors p-1">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
@@ -496,7 +483,6 @@
     </div>
 
 
-    <!-- Kontrol Scriptleri -->
     <script>
         // --- Dark Mode Mantığı ---
         const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
@@ -574,20 +560,17 @@
         });
 
 
-        // --- MOBİL FOOTER AKORDEON (HAMBURGER) MANTIĞI (YENİ) ---
+        // --- FOOTER AKORDEON MOBİL ---
         const accordionButtons = document.querySelectorAll('.footer-accordion-btn');
         
         accordionButtons.forEach(button => {
             button.addEventListener('click', function() {
-                // Sadece geniş ekran sınırının (xl) altındaysak çalıştır
                 if (window.innerWidth < 1280) {
                     const content = this.nextElementSibling;
                     const icon = this.querySelector('i');
                     
-                    // Aç/Kapat geçiş mantığı
                     content.classList.toggle('hidden');
                     
-                    // İkon çevirme animasyonu
                     if (content.classList.contains('hidden')) {
                         icon.classList.remove('rotate-180');
                     } else {
