@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MADO - Teslimat Koşulları</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Ana sayfadaki tema tercihini localStorage üzerinden otomatik oku
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-[#f1f1f1] text-[#000000] dark:bg-[#0A0A0A] dark:text-[#f1f1f1] min-h-screen flex flex-col justify-between transition-colors duration-300">
+
+    <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between z-20">
+        <a href="index.html" class="flex items-center gap-2 text-xs font-semibold tracking-wide text-[#152D62]/70 dark:text-[#f1f1f1]/70 hover:text-[#A67C00] dark:hover:text-[#A67C00] transition-colors">
+            <i class="fa-solid fa-arrow-left"></i> Ana Sayfaya Dön
+        </a>
+        
+        <button id="theme-toggle" class="text-[#152D62] dark:text-[#f1f1f1] hover:text-[#A67C00] dark:hover:text-[#A67C00] text-lg p-2.5 rounded-lg border border-[#152D62]/10 dark:border-[#152D62]/30 bg-[#ffffff]/80 dark:bg-[#152D62]/20 backdrop-blur-sm transition-all shadow-sm">
+            <i id="theme-toggle-dark-icon" class="hidden fa-solid fa-moon"></i>
+            <i id="theme-toggle-light-icon" class="hidden fa-solid fa-sun"></i>
+        </button>
+    </div>
+
+    <main class="flex-grow flex items-center justify-center px-4 py-8 relative">
+        <div class="absolute w-72 h-72 bg-[#A67C00]/5 dark:bg-[#152D62]/10 rounded-full blur-3xl top-1/4 left-1/4 pointer-events-none"></div>
+
+        <div class="w-full max-w-3xl bg-[#ffffff] dark:bg-[#000000] rounded-3xl border border-[#152D62]/10 dark:border-[#152D62]/20 shadow-2xl p-8 sm:p-12 transition-colors duration-300 z-10 space-y-6">
+            
+            <div class="border-b border-[#152D62]/10 dark:border-[#152D62]/20 pb-4">
+                <h1 class="text-2xl sm:text-3xl font-bold text-[#152D62] dark:text-[#A67C00] font-serif">Teslimat Koşulları</h1>
+                <p class="text-xs text-[#000000]/50 dark:text-[#f1f1f1]/50 mt-1">Son Güncelleme: Temmuz 2026</p>
+            </div>
+
+            <div class="space-y-6 text-sm text-[#000000]/80 dark:text-[#f1f1f1]/80 leading-relaxed font-light">
+                
+                <div class="space-y-2">
+                    <h3 class="text-base font-bold text-[#152D62] dark:text-[#f1f1f1] flex items-center gap-2">
+                        <i class="fa-solid fa-truck-ramp-box text-[#A67C00]"></i> 1. Gönderim ve Dağıtım Ağı
+                    </h3>
+                    <p>Pazartesi, Salı, Çarşamba ve Cumartesi günleri 08.30 ve 17.00 arasında verilen siparişler aynı gün içerisinde Aras Kargo’ya teslim edilir. 48 ile 72 saat içerisinde tarafınıza teslim edilecek şekilde planlanmaktadır. Perşembe ve Cuma günleri verilen siparişler Cumartesi günü kargoya verilmektedir.
+Tarafımızdan kaynaklanan bir aksilik olması halinde ise size üyelik bilgilerinizden yola çıkılarak haber verilecektir. Bu yüzden üyelik bilgilerinizin eksiksiz ve doğru olması önemlidir. Bayram ve tatil günlerinde teslimat yapılmamaktadır.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 class="text-base font-bold text-[#152D62] dark:text-[#f1f1f1] flex items-center gap-2">
+                        <i class="fa-solid fa-clock text-[#A67C00]"></i> 2. Teslimat Süreleri
+                    </h3>
+                    <p>Kahramanmaraş merkez yerleşkemizden çıkan siparişler, bulunduğunuz bölgeye ve kargo dağıtım ağına bağlı olarak 24 ila 48 saat içerisinde adrese teslim edilir. Belirli bölgeler için gün içi kurye ile teslimat seçeneği mevcuttur.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 class="text-base font-bold text-[#152D62] dark:text-[#f1f1f1] flex items-center gap-2">
+                        <i class="fa-solid fa-snowflake text-[#A67C00]"></i> 3. Soğuk Zincir Garantisi
+                    </h3>
+                    <p>Dondurma ürünlerimizin kıvam, doku ve lezzet korumasını garanti altına almak amacıyla -18°C sıcaklık standartlarında paketleme yapılmaktadır. Paket açıldığında erime tespit edilen ürünler için derhal hasar tespit tutanağı tutulması rica olunur.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 class="text-base font-bold text-[#152D62] dark:text-[#f1f1f1] flex items-center gap-2">
+                        <i class="fa-solid fa-circle-exclamation text-[#A67C00]"></i> 4. Alıcının Sorumlulukları
+                    </h3>
+                    <p>Sipariş adreste kimsenin bulunamaması nedeniyle teslim edilemezse, soğuk zincir süresi riske gireceğinden dolayı ürünler şubeye geri çekilir. Bu tür durumlarda sorumluluk müşteriye aittir.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="py-6 text-center text-[11px] text-[#000000]/30 dark:text-[#f1f1f1]/30 z-20">
+        &copy; 2026 MADO. Tüm Hakları Saklıdır.
+    </footer>
+
+    <script>
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        function syncIcons() {
+            if (document.documentElement.classList.contains('dark')) {
+                themeToggleLightIcon.classList.remove('hidden');
+                themeToggleDarkIcon.classList.add('hidden');
+            } else {
+                themeToggleDarkIcon.classList.remove('hidden');
+                themeToggleLightIcon.classList.add('hidden');
+            }
+        }
+        syncIcons();
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+            syncIcons();
+        });
+    </script>
+</body>
+</html>
