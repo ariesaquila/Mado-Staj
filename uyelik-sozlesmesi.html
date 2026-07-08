@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MADO - Üyelik Sözleşmesi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Ana sayfadaki tema tercihini localStorage üzerinden otomatik oku
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-[#f1f1f1] text-[#000000] dark:bg-[#0A0A0A] dark:text-[#f1f1f1] min-h-screen flex flex-col justify-between transition-colors duration-300">
+
+    <!-- Üst Bar / Geri Dönüş ve Tema Butonu -->
+    <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between z-20">
+        <a href="index.html" class="flex items-center gap-2 text-xs font-semibold tracking-wide text-[#152D62]/70 dark:text-[#f1f1f1]/70 hover:text-[#A67C00] dark:hover:text-[#A67C00] transition-colors">
+            <i class="fa-solid fa-arrow-left"></i> Ana Sayfaya Dön
+        </a>
+        
+        <!-- Dark Mode Butonu -->
+        <button id="theme-toggle" class="text-[#152D62] dark:text-[#f1f1f1] hover:text-[#A67C00] dark:hover:text-[#A67C00] text-lg p-2.5 rounded-lg border border-[#152D62]/10 dark:border-[#152D62]/30 bg-[#ffffff]/80 dark:bg-[#152D62]/20 backdrop-blur-sm transition-all shadow-sm">
+            <i id="theme-toggle-dark-icon" class="hidden fa-solid fa-moon"></i>
+            <i id="theme-toggle-light-icon" class="hidden fa-solid fa-sun"></i>
+        </button>
+    </div>
+
+    <!-- Üyelik Sözleşmesi İçerik Alanı -->
+    <main class="flex-grow flex items-center justify-center px-4 py-8 relative">
+        <div class="absolute w-72 h-72 bg-[#A67C00]/5 dark:bg-[#152D62]/10 rounded-full blur-3xl top-1/4 left-1/4 pointer-events-none"></div>
+
+        <div class="w-full max-w-3xl bg-[#ffffff] dark:bg-[#000000] rounded-3xl border border-[#152D62]/10 dark:border-[#152D62]/20 shadow-2xl p-8 sm:p-12 transition-colors duration-300 z-10 space-y-6">
+            
+            <div class="border-b border-[#152D62]/10 dark:border-[#152D62]/20 pb-4">
+                <h1 class="text-2xl sm:text-3xl font-bold text-[#152D62] dark:text-[#A67C00] font-serif">Üyelik Sözleşmesi</h1>
+                <p class="text-xs text-[#000000]/50 dark:text-[#f1f1f1]/50 mt-1">Son Güncelleme: Temmuz 2026</p>
+            </div>
+
+            <!-- İstediğin Sözleşme Maddeleri -->
+            <div class="space-y-6 text-sm text-[#000000]/80 dark:text-[#f1f1f1]/80 leading-relaxed font-light">
+                
+                <!-- Üyelik Hakkında -->
+                <div class="space-y-2">
+                    <h3 class="text-base font-bold text-[#152D62] dark:text-[#f1f1f1] flex items-center gap-2">
+                        <i class="fa-solid fa-user-plus text-[#A67C00]"></i> Üyelik Hakkında
+                    </h3>
+                    <p>Mağazamıza üye olmak için Üye İşlemleri sayfamıza giderek ilgili bölümleri doldurmanız yeterlidir. Üye bilgilerinizi doğru ve eksiksiz doldurmanız iletişim ve ulaşım problemleri olasılığı açısından çok önemlidir. Ürün ve hizmetlerin çabuk ve sıhhatli ulaşması için lütfen dikkatle ve eksiksiz doldurunuz.</p>
+                    <p>Üye olmak oldukça basit ve hızlı bir işlemdir. Üye olmanız hiçbir yükümlülük altına girdiğinizi ifade etmez. Ancak alışveriş yapmadan önce Satış sözleşmesini dikkatle okuyunuz. Dilediğiniz zaman üyeliğinizi sonlandırma hakkına sahipsiniz.</p>
+                </div>
+
+                <!-- Üyelik İptali -->
+                <div class="space-y-3">
+                    <h3 class="text-base font-bold text-[#152D62] dark:text-[#f1f1f1] flex items-center gap-2">
+                        <i class="fa-solid fa-user-minus text-[#A67C00]"></i> Üyelik İptali
+                    </h3>
+                    <p>Üye dilediği zaman üyeliğini sonlandırma hakkına sahiptir. Üyeliğinizi sonlandırdıktan sonra sitemiz ile tüm ilişkiniz kesilmiş olacaktır. Üyeliğinizi sonlandırmak için üye girişi yaptıktan sonra iletişim bilgileri sayfamızdan talebinizi iletmelisiniz.</p>
+                    
+                    <!-- İptal Edilemeyecek Durumlar -->
+                    <div class="bg-[#f1f1f1]/50 dark:bg-[#152D62]/10 p-4 rounded-xl border border-[#152D62]/5">
+                        <h4 class="font-bold text-xs uppercase tracking-wide text-[#62152d] dark:text-[#A67C00] mb-2">Aşağıdaki Durumlarda Üyelik İptal Edilemez:</h4>
+                        <ul class="list-decimal list-inside space-y-1 text-xs font-medium">
+                            <li>Üye son verdiği sipariş üzerinden 60 gün geçmemişse.</li>
+                            <li>Farklı bir e-posta adresi ile üyelik iptal talebinde bulunulduysa.</li>
+                            <li>Üyeye kayıtlı bilgilerinden ulaşılamıyorsa.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Bizim İptal Edeceğimiz Durumlar -->
+                    <div class="bg-[#f1f1f1]/50 dark:bg-[#152D62]/10 p-4 rounded-xl border border-[#152D62]/5">
+                        <h4 class="font-bold text-xs uppercase tracking-wide text-[#62152d] dark:text-[#A67C00] mb-2">Aşağıdaki Durumlarda Üyelik Tarafımızdan İptal Edilir:</h4>
+                        <ul class="list-decimal list-inside space-y-1 text-xs font-medium">
+                            <li>Üye ahlak dışı mesajlar gönderiyor ya da yorum yazıyorsa.</li>
+                            <li>Sahtekârlık girişiminde bulunduysa.</li>
+                            <li>Sisteme veya MADO ismine zarar vermeye yönelik girişimde bulunduysa.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Üye Güvenliği -->
+                <div class="space-y-2">
+                    <h3 class="text-base font-bold text-[#152D62] dark:text-[#f1f1f1] flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-[#A67C00]"></i> Üye Güvenliği
+                    </h3>
+                    <p>Üyenin güvenliği için mağazamızda her türlü önlem alınmıştır. Bu alınan önlemlerin yanında sizler de üye bilgilerinizin güvenliğinden sorumlusunuz. Mağazamıza giriş için kullandığınız bilgilerinizi hiç kimse ile paylaşmayın, güvenli olduğundan emin olmadığınız bilgisayarlardan sisteme giriş yapmayın.</p>
+                </div>
+
+                <!-- Farklı Adres -->
+                <div class="space-y-2">
+                    <h3 class="text-base font-bold text-[#152D62] dark:text-[#f1f1f1] flex items-center gap-2">
+                        <i class="fa-solid fa-map-location-dot text-[#A67C00]"></i> Farklı Adres
+                    </h3>
+                    <p>Her üye için sipariş sonlandırırken kendi kayıtlı adresi haricinde farklı adres girebileceği bir adres bölümü bulunmaktadır. Adres bölümü arkadaşlarınıza hediye gönderirken kullanabileceğiniz gibi, farklı adreslerde olduğunuz dönemlerde kullanabilmeniz için düşünülmüştür.</p>
+                    <p><span class="font-semibold italic text-[#62152d] dark:text-[#A67C00]">Örneğin:</span> Çalıştığınız şirketin farklı şubelerinde bulunacağınız dönemlerde veya yazlıkta kaldığınız dönemlerde ya da faturanızın size, siparişinizin bir arkadaşınıza ulaşmasını istiyorsanız bu alanı kullanabilirsiniz.</p>
+                </div>
+
+                <!-- Ürün Yorumları -->
+                <div class="space-y-2">
+                    <h3 class="text-base font-bold text-[#152D62] dark:text-[#f1f1f1] flex items-center gap-2">
+                        <i class="fa-solid fa-comments text-[#A67C00]"></i> Ürün Yorumları
+                    </h3>
+                    <p>Her üye ürünlere yorum yazabilir. Bilgilerinizi ve tecrübelerinizi diğer kullanıcılarla paylaştıkça, alışveriş daha keyifli ve bilinçli olacaktır. Müşteri yorumları tarafsız ve tecrübeye dayalı olacağı için daha bilinçli alışveriş ortamı doğacaktır.</p>
+                    <p><span class="font-bold text-xs uppercase tracking-wide text-[#62152d] dark:text-[#A67C00]">Ürün yorumu yazarken dikkat etmeniz gerekenler:</span> Genel ahlak kuralları çerçevesinde, diğer kullanıcılara ve ürünün üreticisine saygılı yorumlar yazmaya özen gösterin. Yorumlar incelenerek uygun görülmeyen yorumlar sistemden silinmektedir.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="py-6 text-center text-[11px] text-[#000000]/30 dark:text-[#f1f1f1]/30 z-20">
+        &copy; 2026 MADO. Tüm Hakları Saklıdır.
+    </footer>
+
+    <!-- Tema Değiştirme Scripti -->
+    <script>
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        function syncIcons() {
+            if (document.documentElement.classList.contains('dark')) {
+                themeToggleLightIcon.classList.remove('hidden');
+                themeToggleDarkIcon.classList.add('hidden');
+            } else {
+                themeToggleDarkIcon.classList.remove('hidden');
+                themeToggleLightIcon.classList.add('hidden');
+            }
+        }
+        syncIcons();
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+            syncIcons();
+        });
+    </script>
+</body>
+</html>

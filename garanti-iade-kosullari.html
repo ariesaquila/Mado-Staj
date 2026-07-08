@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MADO - Garanti ve İade Koşulları</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Ana sayfadaki tema tercihini localStorage üzerinden otomatik oku
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-[#f1f1f1] text-[#000000] dark:bg-[#0A0A0A] dark:text-[#f1f1f1] min-h-screen flex flex-col justify-between transition-colors duration-300">
+
+    <!-- Üst Bar / Geri Dönüş ve Tema Butonu -->
+    <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between z-20">
+        <a href="index.html" class="flex items-center gap-2 text-xs font-semibold tracking-wide text-[#152D62]/70 dark:text-[#f1f1f1]/70 hover:text-[#A67C00] dark:hover:text-[#A67C00] transition-colors">
+            <i class="fa-solid fa-arrow-left"></i> Ana Sayfaya Dön
+        </a>
+        
+        <!-- Dark Mode Butonu -->
+        <button id="theme-toggle" class="text-[#152D62] dark:text-[#f1f1f1] hover:text-[#A67C00] dark:hover:text-[#A67C00] text-lg p-2.5 rounded-lg border border-[#152D62]/10 dark:border-[#152D62]/30 bg-[#ffffff]/80 dark:bg-[#152D62]/20 backdrop-blur-sm transition-all shadow-sm">
+            <i id="theme-toggle-dark-icon" class="hidden fa-solid fa-moon"></i>
+            <i id="theme-toggle-light-icon" class="hidden fa-solid fa-sun"></i>
+        </button>
+    </div>
+
+    <!-- İçerik Alanı -->
+    <main class="flex-grow flex items-center justify-center px-4 py-8 relative">
+        <div class="absolute w-72 h-72 bg-[#A67C00]/5 dark:bg-[#152D62]/10 rounded-full blur-3xl top-1/4 left-1/4 pointer-events-none"></div>
+
+        <div class="w-full max-w-3xl bg-[#ffffff] dark:bg-[#000000] rounded-3xl border border-[#152D62]/10 dark:border-[#152D62]/20 shadow-2xl p-8 sm:p-12 transition-colors duration-300 z-10 space-y-6">
+            
+            <div class="border-b border-[#152D62]/10 dark:border-[#152D62]/20 pb-4">
+                <h1 class="text-2xl sm:text-3xl font-bold text-[#152D62] dark:text-[#A67C00] font-serif">Garanti ve İade Koşulları</h1>
+                <p class="text-xs text-[#000000]/50 dark:text-[#f1f1f1]/50 mt-1">Son Güncelleme: Temmuz 2026</p>
+            </div>
+
+            <!-- İstediğin Koşul Maddeleri -->
+            <div class="space-y-6 text-sm text-[#000000]/80 dark:text-[#f1f1f1]/80 leading-relaxed font-light">
+                
+                <!-- Garanti Koşulları -->
+                <div class="space-y-2">
+                    <h3 class="text-base font-bold text-[#152D62] dark:text-[#f1f1f1] flex items-center gap-2">
+                        <i class="fa-solid fa-award text-[#A67C00]"></i> Garanti Koşulları
+                    </h3>
+                    <p>Tüm ürünler aksi belirtilmediği takdirde üretici firmaların garantisi altındadır. Garanti koşullarının geçerli olabilmesi için kargo teslimatı esnasında ürünü mutlaka kontrol ediniz. Herhangi bir hasar gördüğünüzde tutanak tutturarak ürünü teslim almayınız. Ürün üzerinde yapılan değişiklikler, ürünün deforme olması ya da ürünün orijinal dizaynının bozulması garanti kapsamı dışındadır.</p>
+                </div>
+
+                <!-- Ürün İade Koşulları -->
+                <div class="space-y-2 bg-[#62152d]/5 dark:bg-[#A67C00]/10 p-4 rounded-xl border border-[#62152d]/10 dark:border-[#A67C00]/20">
+                    <h3 class="text-base font-bold text-[#62152d] dark:text-[#A67C00] flex items-center gap-2">
+                        <i class="fa-solid fa-box-tissue"></i> Ürün İade Koşulları
+                    </h3>
+                    <p>Sitemiz üzerinden satın aldığınız ürünün hatalı çıkması halinde teslimat tarihinden itibaren en geç 7 gün içerisinde sayfamızdaki online destek bölümünden bizimle iletişim kurmanız gerekmektedir. Bu bilgileri takiben kargo şirketi ile bize ulaştıracağınız hatalı ürün yenisi ile değiştirilecektir.</p>
+                    <p>Sipariş edilen ürün hatası müşteri kullanımından oluşmuşsa veya 7 günlük süre içerisinde ürün kullanılmışsa ürünün iade ve değişimi yapılmaz. Ürün iadesi ve değiştirme şartları olarak, 4077 sayılı Tüketicinin Korunması Hakkında Kanun gereği uygulamalar esastır.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="py-6 text-center text-[11px] text-[#000000]/30 dark:text-[#f1f1f1]/30 z-20">
+        &copy; 2026 MADO. Tüm Hakları Saklıdır.
+    </footer>
+
+    <!-- Tema Değiştirme Scripti -->
+    <script>
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        function syncIcons() {
+            if (document.documentElement.classList.contains('dark')) {
+                themeToggleLightIcon.classList.remove('hidden');
+                themeToggleDarkIcon.classList.add('hidden');
+            } else {
+                themeToggleDarkIcon.classList.remove('hidden');
+                themeToggleLightIcon.classList.add('hidden');
+            }
+        }
+        syncIcons();
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+            syncIcons();
+        });
+    </script>
+</body>
+</html>

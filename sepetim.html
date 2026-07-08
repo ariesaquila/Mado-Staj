@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MADO - Sepetim</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-[#f1f1f1] text-[#000000] dark:bg-[#0A0A0A] dark:text-[#f1f1f1] min-h-screen flex flex-col justify-between transition-colors duration-300">
+
+    <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between z-20">
+        <a href="index.html" class="flex items-center gap-2 text-xs font-semibold tracking-wide text-[#152D62]/70 dark:text-[#f1f1f1]/70 hover:text-[#A67C00] dark:hover:text-[#A67C00] transition-colors">
+            <i class="fa-solid fa-arrow-left"></i> Alışverişe Devam Et
+        </a>
+        
+        <button id="theme-toggle" class="text-[#152D62] dark:text-[#f1f1f1] hover:text-[#A67C00] dark:hover:text-[#A67C00] text-lg p-2.5 rounded-lg border border-[#152D62]/10 dark:border-[#152D62]/30 bg-[#ffffff]/80 dark:bg-[#152D62]/20 backdrop-blur-sm transition-all shadow-sm">
+            <i id="theme-toggle-dark-icon" class="hidden fa-solid fa-moon"></i>
+            <i id="theme-toggle-light-icon" class="hidden fa-solid fa-sun"></i>
+        </button>
+    </div>
+
+    <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex-grow py-6">
+        <h1 class="text-3xl font-bold text-[#152D62] dark:text-[#f1f1f1] font-serif tracking-wide mb-8">Alışveriş Sepetim</h1>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            
+            <div id="cart-items-container" class="lg:col-span-2 space-y-4">
+                </div>
+
+            <div class="bg-[#ffffff] dark:bg-[#000000] rounded-2xl border border-[#62152d]/20 dark:border-[#152D62]/20 p-6 shadow-md space-y-4">
+                <h3 class="text-lg font-bold text-[#152D62] dark:text-[#f1f1f1] border-b border-[#152D62]/10 pb-3 font-serif">Sipariş Özeti</h3>
+                
+                <div class="flex justify-between text-sm text-[#000000]/60 dark:text-[#f1f1f1]/60">
+                    <span>Ara Toplam</span>
+                    <span id="subtotal-price">0,00 TL</span>
+                </div>
+                <div class="flex justify-between text-sm text-[#000000]/60 dark:text-[#f1f1f1]/60">
+                    <span>Kargo Bedeli</span>
+                    <span class="text-green-600 font-semibold">Ücretsiz</span>
+                </div>
+                
+                <div class="border-t border-[#152D62]/10 pt-3 flex justify-between font-bold text-base text-[#62152d] dark:text-[#A67C00]">
+                    <span>Genel Toplam</span>
+                    <span id="total-price">0,00 TL</span>
+                </div>
+
+                <button class="w-full bg-[#62152d] dark:bg-[#A67C00] text-white dark:text-black hover:opacity-90 font-bold text-sm py-3.5 rounded-xl transition-all shadow-md mt-4 uppercase tracking-wider">
+                    Siparişi Tamamla <i class="fa-solid fa-chevron-right ml-1 text-xs"></i>
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="py-6 text-center text-[11px] text-[#000000]/30 dark:text-[#f1f1f1]/30 border-t border-[#152D62]/10 dark:border-[#152D62]/20">
+        &copy; 2026 MADO. Tüm Hakları Saklıdır.
+    </footer>
+
+    <script>
+        // --- Dark Mode Mantığı ---
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        function syncIcons() {
+            if (document.documentElement.classList.contains('dark')) {
+                themeToggleLightIcon.classList.remove('hidden');
+                themeToggleDarkIcon.classList.add('hidden');
+            } else {
+                themeToggleDarkIcon.classList.remove('hidden');
+                themeToggleLightIcon.classList.add('hidden');
+            }
+        }
+        syncIcons();
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+            syncIcons();
+        });
+
+        // --- SEPETİ RENDER ETME VE HESAPLAMA MANTIĞI ---
+        const itemsContainer = document.getElementById('cart-items-container');
+        const subtotalElement = document.getElementById('subtotal-price');
+        const totalElement = document.getElementById('total-price');
+
+        function formatPrice(number) {
+            return new Intl.NumberFormat('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(number) + " TL";
+        }
+
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem('mado-cart')) || [];
+            itemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = `
+                    <div class="bg-white dark:bg-black rounded-2xl p-8 border border-dashed border-[#152D62]/20 text-center py-16 space-y-4">
+                        <i class="fa-solid fa-basket-shopping text-4xl text-[#152D62]/30 dark:text-[#f1f1f1]/20 animate-bounce"></i>
+                        <p class="text-sm text-[#000000]/50 dark:text-[#f1f1f1]/50 font-medium">Sepetinizde henüz bir lezzet bulunmuyor.</p>
+                        <a href="index.html" class="inline-block bg-[#62152d] text-white text-xs font-bold px-6 py-3 rounded-xl uppercase tracking-wider shadow-md">Ürünleri Keşfet</a>
+                    </div>`;
+                subtotalElement.innerText = "0,00 TL";
+                totalElement.innerText = "0,00 TL";
+                return;
+            }
+
+            let subtotal = 0;
+
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
+                itemsContainer.innerHTML += `
+                    <div class="bg-[#ffffff] dark:bg-[#000000] rounded-2xl border border-[#152D62]/10 dark:border-[#152D62]/20 p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm group">
+                        <div class="flex items-center gap-4 w-full sm:w-auto">
+                            <div class="w-16 h-16 bg-[#f1f1f1] dark:bg-[#152D62]/10 rounded-xl flex items-center justify-center p-2 border border-[#152D62]/5">
+                                <img src="${item.img}" alt="${item.name}" class="max-h-full object-contain mix-blend-multiply dark:mix-blend-normal">
+                            </div>
+                            <div class="space-y-0.5">
+                                <h4 class="text-sm font-bold text-[#152D62] dark:text-[#f1f1f1] line-clamp-1">${item.name}</h4>
+                                <p class="text-xs text-[#62152d] dark:text-[#A67C00] font-bold">${formatPrice(item.price)} <span class="text-[10px] text-gray-400 font-light">/ adet</span></p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto border-t sm:border-t-0 pt-3 sm:pt-0 border-[#152D62]/5">
+                            <div class="flex items-center border border-[#152D62]/20 dark:border-[#152D62]/40 rounded-xl bg-[#f1f1f1]/50 dark:bg-transparent overflow-hidden">
+                                <button onclick="changeQty(${index}, -1)" class="px-3 py-1.5 hover:bg-[#62152d] hover:text-white dark:hover:bg-[#A67C00] dark:hover:text-black transition-colors text-xs font-bold focus:outline-none">-</button>
+                                <span class="px-4 text-xs font-bold text-[#152D62] dark:text-[#f1f1f1]">${item.quantity}</span>
+                                <button onclick="changeQty(${index}, 1)" class="px-3 py-1.5 hover:bg-[#62152d] hover:text-white dark:hover:bg-[#A67C00] dark:hover:text-black transition-colors text-xs font-bold focus:outline-none">+</button>
+                            </div>
+                            <div class="text-right min-w-[80px]">
+                                <span class="text-sm font-bold text-[#152D62] dark:text-[#f1f1f1] block">${formatPrice(itemTotal)}</span>
+                                <button onclick="removeItem(${index})" class="text-xs text-red-500 hover:underline font-medium mt-0.5 focus:outline-none">Sil</button>
+                            </div>
+                        </div>
+                    </div>`;
+            });
+
+            subtotalElement.innerText = formatPrice(subtotal);
+            totalElement.innerText = formatPrice(subtotal);
+        }
+
+        window.changeQty = function(index, delta) {
+            let cart = JSON.parse(localStorage.getItem('mado-cart')) || [];
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            localStorage.setItem('mado-cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        window.removeItem = function(index) {
+            let cart = JSON.parse(localStorage.getItem('mado-cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('mado-cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        // Sayfa açıldığında sepeti yükle
+        loadCart();
+    </script>
+</body>
+</html>
