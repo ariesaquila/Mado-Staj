@@ -7,6 +7,7 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        // Sayfa yüklenirken kullanıcının daha önceki tema tercihini kontrol et
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         } else {
@@ -14,11 +15,14 @@
         }
     </script>
     <script>
+        // TAILWIND CLASS TABANLI DARK MODE ETKİNLEŞTİRME
         tailwind.config = {
             darkMode: 'class'
         }
     </script>
+    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -50,7 +54,7 @@
                 <a href="#yöresel-sepet" class="hover:text-[#A67C00] text-[#62152d]/80 dark:text-[#A67C00]/80 transition-colors">Yöresel Sepet</a>
             </nav>
 
-            <!-- Right Controls-->
+            <!-- Right Controls (Search + Auth + Theme Toggle + CTA) -->
             <div class="hidden md:flex items-center space-x-4 flex-grow justify-end max-w-2xl">
                 <!-- Masaüstü Arama Kutucuğu -->
                 <form class="relative w-full max-w-[160px] lg:max-w-[200px]">
@@ -60,13 +64,13 @@
 
                 <!-- Üye Giriş / Kayıt Linkleri -->
                 <div class="flex items-center space-x-3 text-xs font-semibold tracking-wide shrink-0">
-                    <a href="#giris-yap" class="text-[#152D62]/80 dark:text-[#f1f1f1]/80 hover:text-[#A67C00] dark:hover:text-[#A67C00] transition-colors flex items-center gap-1.5 py-2">
+                    <button id="login-open-btn" class="text-[#152D62]/80 dark:text-[#f1f1f1]/80 hover:text-[#A67C00] dark:hover:text-[#A67C00] transition-colors flex items-center gap-1.5 py-2 focus:outline-none">
                         <i class="fa-regular fa-user text-sm"></i> Giriş Yap
-                    </a>
+                    </button>
                     <span class="text-[#152D62]/20 dark:text-[#f1f1f1]/20">|</span>
-                    <a href="#uye-ol" class="text-[#62152d] dark:text-[#A67C00] hover:opacity-80 transition-opacity py-2">
+                    <button id="register-open-btn" class="text-[#62152d] dark:text-[#A67C00] hover:opacity-80 transition-opacity py-2 focus:outline-none">
                         Üye Ol
-                    </a>
+                    </button>
                 </div>
 
                 <!-- Dark Mode Butonu -->
@@ -93,48 +97,15 @@
                 </button>
             </div>
         </div>
-
-        <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-[#ffffff] dark:bg-[#000000] border-t border-[#152D62]/10 dark:border-[#152D62]/20 px-4 pt-4 pb-6 space-y-3 absolute w-full left-0 transition-all shadow-xl">
-            <!-- Mobil Arama Kutucuğu -->
-            <form class="relative w-full px-2 pb-2">
-                <input type="text" placeholder="Ürün veya lezzet ara..." class="w-full bg-[#f1f1f1] dark:bg-[#152D62]/20 text-sm text-[#000000] dark:text-[#f1f1f1] placeholder-[#000000]/40 dark:placeholder-[#f1f1f1]/40 pl-10 pr-4 py-3 rounded-xl border border-[#152D62]/10 dark:border-[#152D62]/30 focus:outline-none focus:border-[#A67C00] transition-colors">
-                <i class="fa-solid fa-magnifying-glass absolute left-5 top-[40%] -translate-y-1/2 text-sm text-[#000000]/40 dark:text-[#f1f1f1]/40"></i>
-            </form>
-
-            <a href="#tarihce" class="mobile-link block py-2.5 px-4 text-base font-medium text-[#152D62]/80 dark:text-[#f1f1f1]/80 hover:text-[#A67C00] dark:hover:text-[#62152d] hover:bg-[#152D62]/5 dark:hover:bg-[#152D62]/10 rounded-lg transition-all">Tarihçe</a>
-            <a href="#dondurmalar" class="mobile-link block py-2.5 px-4 text-base font-medium text-[#152D62]/80 dark:text-[#f1f1f1]/80 hover:text-[#A67C00] dark:hover:text-[#62152d] hover:bg-[#152D62]/5 dark:hover:bg-[#152D62]/10 rounded-lg transition-all">Dondurmalar</a>
-            <a href="#serbetli-tatlılar" class="mobile-link block py-2.5 px-4 text-base font-medium text-[#152D62]/80 dark:text-[#f1f1f1]/80 hover:text-[#A67C00] dark:hover:text-[#62152d] hover:bg-[#152D62]/5 dark:hover:bg-[#152D62]/10 rounded-lg transition-all">Serbetli Tatlılar</a>
-            <a href="#yöresel-sepet" class="mobile-link block py-2.5 px-4 text-base font-medium text-[#152D62]/80 dark:text-[#f1f1f1]/80 hover:text-[#A67C00] dark:hover:text-[#62152d] hover:bg-[#152D62]/5 dark:hover:bg-[#152D62]/10 rounded-lg transition-all">Yöresel Sepet</a>
-            
-            <!-- Mobil Üye İşlemleri -->
-            <div class="pt-4 px-2 border-t border-[#152D62]/10 dark:border-[#152D62]/20 grid grid-cols-2 gap-3 text-center">
-                <a href="#" class="mobile-link border border-[#152D62]/20 dark:border-[#152D62]/40 text-sm font-semibold py-2.5 rounded-xl hover:bg-[#f1f1f1] dark:hover:bg-[#152D62]/20 transition-all flex items-center justify-center gap-2">
-                    <i class="fa-regular fa-user"></i> Giriş Yap
-                </a>
-                <a href="#" class="mobile-link bg-[#62152d] dark:bg-[#152D62]/40 text-[#ffffff] text-sm font-semibold py-2.5 rounded-xl hover:opacity-90 transition-all">
-                    Üye Ol
-                </a>
-            </div>
-
-            <div class="pt-2">
-                <a href="#iletisim" class="mobile-link block w-full text-center bg-[#A67C00] hover:bg-[#62152d]/90 text-[#f1f1f1] py-3 rounded-lg font-semibold text-sm tracking-wide transition-all">
-                    Bizimle İletişime Geç
-                </a>
-            </div>
-        </div>
     </header>
 
     <!-- Hero Section -->
     <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#ffffff] dark:bg-[#000000] transition-colors duration-300">
-        <!-- Gerçek Arka Plan Görseli -->
         <div class="absolute inset-0 z-0">
             <img src="int2.png" alt="Mado Gerçek Lezzet Arka Plan" class="w-full h-full object-cover select-none pointer-events-none">
         </div>
-
         <div class="absolute inset-0 bg-gradient-to-b from-[#000000]/70 via-[#838383]/85 to-[#565656] dark:hidden z-10 transition-all duration-300"></div>
         <div class="hidden dark:block absolute inset-0 bg-gradient-to-b from-[#000000]/75 via-[#000000]/85 to-[#0A0A0A] z-10 transition-all duration-300"></div>
-
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center space-y-8">
             <span class="inline-block px-4 py-1.5 rounded-full bg-[#A67C00]/5 dark:bg-[#152D62]/40 text-[#A67C00] text-xs font-semibold uppercase tracking-widest border border-[#152D62]/10 dark:border-[#152D62]/60 shadow-sm backdrop-blur-sm">
@@ -158,8 +129,8 @@
         </div>
     </section>
 
-
-    <section id="tarihce" class="py-24 bg-[#f1f1f1] dark:bg-[#0A0A0A] transition-colors duration-300 border-t border-[#152D62]/10 dark:border-[#152D62]/20">
+    <!-- Tarihçe / Hikaye Section (Optimize Edilmiş Boşluk) -->
+    <section id="tarihce" class="pt-24 pb-12 bg-[#f1f1f1] dark:bg-[#0A0A0A] transition-colors duration-300 border-t border-[#152D62]/10 dark:border-[#152D62]/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-[#ffffff] dark:bg-[#000000] rounded-3xl border border-[#152D62]/10 dark:border-[#152D62]/20 shadow-2xl p-6 sm:p-12 lg:p-16 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
                 <!-- SOL BLOK -->
@@ -174,7 +145,7 @@
                             </div>
                         </div>
                         <p class="text-sm sm:text-base text-[#000000]/70 dark:text-[#f1f1f1]/70 leading-relaxed font-light">
-                            Yaşar Pastanesi, başta bir dunya markası olan MADO olmak üzere Marax, Marpop, Icemar, MADO Dondurma ve Künefeci gibi markaları çatısı altında bulunduran Yaşar Dondurma'nın ilk dükkanıdır. Bu nedenle Yaşar Pastanesi, Kahramanmaraş lezzetlerinin ülkemizde ve dünyada tanınması ve sevilmesine öncülük eden markaların beşiği konumundadır.
+                            Yaşar Pastanesi, başta bir dunya markası olan MADO olmak üzere Marax, Marpop, Icemar, MADO Dondurma og Künefeci gibi markaları çatısı altında bulunduran Yaşar Dondurma'nın ilk dükkanıdır. Bu nedenle Yaşar Pastanesi, Kahramanmaraş lezzetlerinin ülkemizde ve dünyada tanınması ve sevilmesine öncülük eden markaların beşiği konumundadır.
                         </p>
                         <a href="https://i.ibb.co/dJ4pZLfb/dondurma.png" class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-[#F25C05] hover:underline">
                             Hikayenin Devamı <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
@@ -190,7 +161,7 @@
                     <div class="bg-[#E2E3E8] dark:bg-[#152D62]/10 p-8 rounded-2xl border border-[#152D62]/10 dark:border-[#152D62]/20 space-y-4">
                         <h3 class="text-2xl sm:text-3xl font-bold text-[#152D62] dark:text-[#F25C05] tracking-tight">Kanbur Kardeşlerin Başarısı</h3>
                         <p class="text-xs sm:text-sm text-[#000000]/80 dark:text-[#f1f1f1]/80 leading-relaxed font-light">
-                            Gerçek dondurmanın 168 yıllık serüveni Kahramanmaraş'ta başlamıştır. Bu 168 yıllık serüvenin mihenk taşlarından biri de Maraş Dondurması'nın günümüzde bir sembol haline gelmesinde önemli yeri olan Yaşar Pastanesi'dir. Bugün dünyanın tanıdığı Yaşar Pastanesi'nin macerası, 1969 yılında Kahramanmaraş'ta 25 metrekarelik bir dükkanda başladı. Bugün dunya markaları bünyesinde barındıran Yaşar Dondurma'nın ilk dükkanı ve bir anlamda beşiği olan Yaşar Pastanesi, günümüzde Maraş Dondurması dendiğinde Türkiye ve dünyada ilk akla gelen yerdir.
+                            Gerçek dondurmanın 168 yıllık serüveni Kahramanmaraş'ta başlamıştır. Bu 168 yıllık serüvenin mihenk taşlarından biri de Maraş Dondurması'nın günümüzde bir sembol haline gelmesinde önemli yeri olan Yaşar Pastanesi'dir. Bugün dünyanın tanıdığı Yaşar Pastanesi'nin macerası, 1969 yılında Kahramanmaraş'ta 25 metrekarelik bir dükkanda başladı. Bugün dunya markaları bünyesinde barındıran Yaşar Dondurma'nın ilk dükkanı bir anlamda beşiği olan Yaşar Pastanesi, günümüzde Maraş Dondurması dendiğinde Türkiye ve dünyada ilk akla gelen yerdir.
                         </p>
                     </div>
                 </div>
@@ -233,8 +204,8 @@
         </div>
     </section>
 
-
-    <section id="dondurmalar" class="py-24 bg-[#ffffff] dark:bg-[#000000] transition-colors duration-300">
+    <!-- Dondurmalar / Serüven Showcase Section (Optimize Edilmiş Boşluk) -->
+    <section id="dondurmalar" class="pt-12 pb-24 bg-[#ffffff] dark:bg-[#000000] transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 space-y-2">
                 <div class="flex justify-center opacity-60 dark:opacity-80">
@@ -278,16 +249,22 @@
         </div>
     </section>
 
-    <!-- Geniş Alt Bilgi & E-Bülten Bölümü -->
+    <!-- Geniş Alt Bilgi & E-Bülten Bölümü (Responsive Mobil Akordeon Yapı) -->
     <section id="iletisim" class="relative py-20 bg-[#f1f1f1] dark:bg-[#000000] overflow-hidden border-t border-[#62152d]/10 dark:border-[#62152d]/20 transition-colors duration-300">
         <div class="absolute inset-0 opacity-5 dark:opacity-[0.03] mix-blend-multiply dark:mix-blend-luminosity pointer-events-none bg-[url('https://images2.imgbox.com/71/29/wZ9C2gK2_o.jpg')] bg-cover bg-center"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-sm">
+            <!-- xl:grid-cols-6 ile masaüstü korundu; mobilde dikey akış sağlandı -->
+            <div class="grid grid-cols-1 xl:grid-cols-6 gap-6 xl:gap-8 text-sm">
+                
                 <!-- Sütun 1: Kategoriler -->
-                <div class="space-y-4">
-                    <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-[#152D62]/10 dark:border-[#152D62]/20 pb-2">Kategoriler</h4>
-                    <ul class="space-y-2.5 text-[#152D62]/80 dark:text-[#f1f1f1]/70 font-light">
+                <div class="space-y-2 xl:space-y-4 border-b border-[#152D62]/10 dark:border-[#152D62]/20 xl:border-b-0 pb-3 xl:pb-0">
+                    <!-- Mobil için buton, masaüstü için sabit başlık gibi davranan yapı -->
+                    <button class="footer-accordion-btn w-full flex items-center justify-between xl:pointer-events-none text-left focus:outline-none group">
+                        <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-transparent xl:border-[#152D62]/10 dark:border-[#152D62]/20 xl:pb-2 w-full">Kategoriler</h4>
+                        <i class="fa-solid fa-chevron-down text-xs text-[#152D62]/50 dark:text-[#f1f1f1]/50 xl:hidden transition-transform duration-200"></i>
+                    </button>
+                    <ul class="footer-accordion-content hidden xl:block space-y-2.5 text-[#152D62]/80 dark:text-[#f1f1f1]/70 font-light mt-2 xl:mt-0">
                         <li><a href="https://www.yasarpastanesi.com.tr/dondurma" class="hover:text-[#62152d] transition-colors">Dondurmalar</a></li>
                         <li><a href="https://www.yasarpastanesi.com.tr/serbetli-tatlilar" class="hover:text-[#62152d] transition-colors">Tatlılar</a></li>
                         <li><a href="https://www.yasarpastanesi.com.tr/borekler" class="hover:text-[#62152d] transition-colors">Börekler</a></li>
@@ -295,21 +272,27 @@
                 </div>
 
                 <!-- Sütun 2: Önemli Bilgiler -->
-                <div class="space-y-4">
-                    <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-[#152D62]/10 dark:border-[#152D62]/20 pb-2">Önemli Bilgiler</h4>
-                    <ul class="space-y-2.5 text-[#152D62]/80 dark:text-[#f1f1f1]/70 font-light">
-                        <li><a href="#" class="hover:text-[#62152d] transition-colors">Teslimat Koşulları</a></li>
+                <div class="space-y-2 xl:space-y-4 border-b border-[#152D62]/10 dark:border-[#152D62]/20 xl:border-b-0 pb-3 xl:pb-0">
+                    <button class="footer-accordion-btn w-full flex items-center justify-between xl:pointer-events-none text-left focus:outline-none group">
+                        <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-transparent xl:border-[#152D62]/10 dark:border-[#152D62]/20 xl:pb-2 w-full">Önemli Bilgiler</h4>
+                        <i class="fa-solid fa-chevron-down text-xs text-[#152D62]/50 dark:text-[#f1f1f1]/50 xl:hidden transition-transform duration-200"></i>
+                    </button>
+                    <ul class="footer-accordion-content hidden xl:block space-y-2.5 text-[#152D62]/80 dark:text-[#f1f1f1]/70 font-light mt-2 xl:mt-0">
+                        <li><a href="teslimat-kosullari.html" target="_blank" class="hover:text-[#62152d] transition-colors">Teslimat Koşulları</a></li>
                         <li><a href="#" class="hover:text-[#62152d] transition-colors">Üyelik Sözleşmesi</a></li>
                         <li><a href="#" class="hover:text-[#62152d] transition-colors">Satış Sözleşmesi</a></li>
-                        <li><a href="#" class="hover:text-[#62152d] transition-colors">Garanti ve İade Koşulları</a></li>
+                        <li><a href="#" class="hover:text-[#62152d] transition-colors">Garanti ve Iade Koşulları</a></li>
                         <li><a href="#" class="hover:text-[#62152d] transition-colors">Gizlilik ve Güvenlik</a></li>
                     </ul>
                 </div>
 
                 <!-- Sütun 3: Hızlı Erişim -->
-                <div class="space-y-4">
-                    <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-[#152D62]/10 dark:border-[#152D62]/20 pb-2">Hızlı Erişim</h4>
-                    <ul class="space-y-2.5 text-[#152D62]/80 dark:text-[#f1f1f1]/70 font-light">
+                <div class="space-y-2 xl:space-y-4 border-b border-[#152D62]/10 dark:border-[#152D62]/20 xl:border-b-0 pb-3 xl:pb-0">
+                    <button class="footer-accordion-btn w-full flex items-center justify-between xl:pointer-events-none text-left focus:outline-none group">
+                        <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-transparent xl:border-[#152D62]/10 dark:border-[#152D62]/20 xl:pb-2 w-full">Hızlı Erişim</h4>
+                        <i class="fa-solid fa-chevron-down text-xs text-[#152D62]/50 dark:text-[#f1f1f1]/50 xl:hidden transition-transform duration-200"></i>
+                    </button>
+                    <ul class="footer-accordion-content hidden xl:block space-y-2.5 text-[#152D62]/80 dark:text-[#f1f1f1]/70 font-light mt-2 xl:mt-0">
                         <li><a href="#" class="hover:text-[#62152d] transition-colors">Anasayfa</a></li>
                         <li><a href="#" class="hover:text-[#62152d] transition-colors">Yeni Ürünler</a></li>
                         <li><a href="#" class="hover:text-[#62152d] transition-colors">İletişim</a></li>
@@ -319,16 +302,19 @@
                 </div>
 
                 <!-- Sütun 4: Üye -->
-                <div class="space-y-4">
-                    <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-[#152D62]/10 dark:border-[#152D62]/20 pb-2">Üye</h4>
-                    <ul class="space-y-2.5 text-[#152D62]/80 dark:text-[#f1f1f1]/70 font-light">
+                <div class="space-y-2 xl:space-y-4 border-b border-[#152D62]/10 dark:border-[#152D62]/20 xl:border-b-0 pb-3 xl:pb-0">
+                    <button class="footer-accordion-btn w-full flex items-center justify-between xl:pointer-events-none text-left focus:outline-none group">
+                        <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-transparent xl:border-[#152D62]/10 dark:border-[#152D62]/20 xl:pb-2 w-full">Üye</h4>
+                        <i class="fa-solid fa-chevron-down text-xs text-[#152D62]/50 dark:text-[#f1f1f1]/50 xl:hidden transition-transform duration-200"></i>
+                    </button>
+                    <ul class="footer-accordion-content hidden xl:block space-y-2.5 text-[#152D62]/80 dark:text-[#f1f1f1]/70 font-light mt-2 xl:mt-0">
                         <li><a href="#" class="hover:text-[#62152d] transition-colors">Yeni Üyelik</a></li>
                         <li><a href="#" class="hover:text-[#62152d] transition-colors">Üye Girişi</a></li>
                     </ul>
                 </div>
 
                 <!-- Sütun 5 & 6: E-Bülten & Sosyal Medya -->
-                <div class="col-span-2 space-y-6 lg:pl-4">
+                <div class="xl:col-span-2 space-y-6 pt-2 xl:pt-0 xl:pl-4">
                     <div class="space-y-3">
                         <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-[#152D62]/10 dark:border-[#152D62]/20 pb-2">E-BÜLTEN ABONELİĞİ</h4>
                         <p class="text-[#000000]/60 dark:text-[#f1f1f1]/60 text-xs font-light leading-relaxed">Kampanya ve yeniliklerden haberdar olmak için e-bültenimize kayıt olun.</p>
@@ -344,14 +330,14 @@
                         <h4 class="text-[#A67C00] font-bold tracking-wider text-xs uppercase border-b border-[#152D62]/10 dark:border-[#152D62]/20 pb-2">Sosyal Medya</h4>
                         <p class="text-[#000000]/60 dark:text-[#f1f1f1]/60 text-xs font-light">Sosyal medyaya özel indirim ve kampanyalardan ilk sen haberdar ol, fırsatları yakala!</p>
                         <div class="flex items-center space-x-3 pt-1">
-                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#F25C05] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
+                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#A67C00] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
                                 <i class="fa-brands fa-instagram text-sm"></i>
                             </a>
-                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#F25C05] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
+                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#A67C00] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
                                 <i class="fa-brands fa-facebook-f text-sm"></i>
                             </a>
-                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#F25C05] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
-                                <i class="fa-brands fa-x-twitter text-sm"></i>
+                            <a href="#" class="w-8 h-8 rounded-lg bg-[#ffffff] dark:bg-[#152D62]/30 hover:bg-[#A67C00] hover:text-[#f1f1f1] text-[#152D62] dark:text-[#f1f1f1] flex items-center justify-center transition-all border border-[#152D62]/20 dark:border-[#152D62]/40 shadow-sm">
+                                <i class="fa-brands fa-twitter text-sm"></i>
                             </a>
                         </div>
                     </div>
@@ -370,6 +356,145 @@
             </div>
         </div>
     </footer>
+
+
+    <!-- ========================================== -->
+    <!-- MOBİL DRAWER MENÜ YAPISI                   -->
+    <!-- ========================================== -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-[#000000]/60 backdrop-blur-sm z-[90] hidden opacity-0 transition-opacity duration-300 xl:hidden"></div>
+
+    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-[290px] sm:w-[340px] bg-[#ffffff] dark:bg-[#000000] z-[100] shadow-2xl invisible translate-x-full transition-all duration-300 ease-in-out p-5 flex flex-col justify-between border-l border-[#152D62]/10 dark:border-[#152D62]/20 xl:hidden">
+        <div class="space-y-6 w-full shrink-0">
+            <div class="flex items-center justify-between border-b border-[#152D62]/10 dark:border-[#152D62]/20 pb-3">
+                <span class="text-xl font-black tracking-wider text-[#152D62] dark:text-[#f1f1f1]">MADO</span>
+                <button id="menu-close-btn" class="text-[#152D62] dark:text-[#f1f1f1] hover:text-[#62152d] focus:outline-none p-1">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
+            </div>
+            <form class="relative w-full">
+                <input type="text" placeholder="Ürün veya lezzet ara..." class="w-full bg-[#f1f1f1] dark:bg-[#152D62]/20 text-sm text-[#000000] dark:text-[#f1f1f1] placeholder-[#000000]/40 dark:placeholder-[#f1f1f1]/40 pl-10 pr-4 py-2.5 rounded-xl border border-[#152D62]/10 dark:border-[#152D62]/30 focus:outline-none focus:border-[#A67C00] transition-colors">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-[#000000]/40 dark:text-[#f1f1f1]/40"></i>
+            </form>
+            <nav class="flex flex-col space-y-1">
+                <a href="#tarihce" class="mobile-link block py-2.5 px-4 text-sm font-medium text-[#152D62]/80 dark:text-[#f1f1f1]/80 hover:text-[#A67C00] dark:hover:text-[#62152d] hover:bg-[#152D62]/5 dark:hover:bg-[#152D62]/10 rounded-xl transition-all">Tarihçe</a>
+                <a href="#dondurmalar" class="mobile-link block py-2.5 px-4 text-sm font-medium text-[#152D62]/80 dark:text-[#f1f1f1]/80 hover:text-[#A67C00] dark:hover:text-[#62152d] hover:bg-[#152D62]/5 dark:hover:bg-[#152D62]/10 rounded-xl transition-all">Dondurmalar</a>
+                <a href="#serbetli-tatlılar" class="mobile-link block py-2.5 px-4 text-sm font-medium text-[#152D62]/80 dark:text-[#f1f1f1]/80 hover:text-[#A67C00] dark:hover:text-[#62152d] hover:bg-[#152D62]/5 dark:hover:bg-[#152D62]/10 rounded-xl transition-all">Serbetli Tatlılar</a>
+                <a href="#yöresel-sepet" class="mobile-link block py-2.5 px-4 text-sm font-medium text-[#152D62]/80 dark:text-[#f1f1f1]/80 hover:text-[#A67C00] dark:hover:text-[#62152d] hover:bg-[#152D62]/5 dark:hover:bg-[#152D62]/10 rounded-xl transition-all">Yöresel Sepet</a>
+            </nav>
+        </div>
+        <div class="space-y-3 border-t border-[#152D62]/10 dark:border-[#152D62]/20 pt-4 mt-auto shrink-0 w-full">
+            <div class="grid grid-cols-2 gap-2 text-center">
+                <button id="login-open-btn-mobile" class="border border-[#152D62]/20 dark:border-[#152D62]/40 text-xs font-bold py-2.5 rounded-xl hover:bg-[#f1f1f1] dark:hover:bg-[#152D62]/20 transition-all flex items-center justify-center gap-1.5 text-[#000000] dark:text-[#f1f1f1]">
+                    <i class="fa-regular fa-user"></i> Giriş Yap
+                </button>
+                <button id="register-open-btn-mobile" class="bg-[#62152d] dark:bg-[#152D62]/40 text-[#ffffff] text-xs font-bold py-2.5 rounded-xl hover:opacity-90 transition-all flex items-center justify-center">
+                    Üye Ol
+                </button>
+            </div>
+            <a href="#iletisim" class="mobile-link block w-full text-center bg-[#A67C00] hover:bg-[#62152d]/90 text-[#f1f1f1] py-3 rounded-xl font-bold text-xs tracking-wide transition-all shadow-md shadow-[#A67C00]/10">
+                Bizimle İletişime Geç
+            </a>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- GİRİŞ MODAL ALANI                          -->
+    <!-- ========================================== -->
+    <div id="login-modal" class="hidden fixed inset-0 z-[110] flex items-center justify-center p-4">
+        <div id="login-modal-overlay" class="absolute inset-0 bg-[#000000]/60 backdrop-blur-sm"></div>
+        <div class="w-full max-w-md bg-[#ffffff] dark:bg-[#000000] rounded-3xl border border-[#152D62]/10 dark:border-[#152D62]/20 shadow-2xl p-8 sm:p-10 transition-colors duration-300 z-10 relative">
+            <button id="login-close-btn" class="absolute top-5 right-5 text-[#152D62] dark:text-[#f1f1f1] hover:text-[#62152d] dark:hover:text-[#A67C00] transition-colors p-1">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="text-center space-y-2 mb-8">
+                <h2 class="text-3xl font-black tracking-wider text-[#152D62] dark:text-[#f1f1f1]">MADO</h2>
+                <p class="text-xs text-[#000000]/50 dark:text-[#f1f1f1]/50 tracking-wide">Gerçek Lezzete Giriş Yapın</p>
+            </div>
+            <form class="space-y-5" onsubmit="event.preventDefault();">
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-[#152D62] dark:text-[#A67C00]">E-Posta Adresi</label>
+                    <div class="relative">
+                        <input type="email" placeholder="Mail adresinizi girin.." required class="w-full bg-[#f1f1f1]/50 dark:bg-[#152D62]/10 text-sm text-[#000000] dark:text-[#f1f1f1] placeholder-[#000000]/30 dark:placeholder-[#f1f1f1]/30 pl-10 pr-4 py-3 rounded-xl border border-[#152D62]/10 dark:border-[#152D62]/30 focus:outline-none focus:border-[#A67C00] dark:focus:border-[#A67C00] transition-colors">
+                        <i class="fa-regular fa-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-[#000000]/40 dark:text-[#f1f1f1]/40"></i>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-[#152D62] dark:text-[#A67C00]">Şifre</label>
+                        <a href="#" class="text-[#62152d] dark:text-[#A67C00]/80 text-[11px] font-semibold hover:underline">Şifremi Unuttum</a>
+                    </div>
+                    <div class="relative">
+                        <input type="password" placeholder="••••••••" required class="w-full bg-[#f1f1f1]/50 dark:bg-[#152D62]/10 text-sm text-[#000000] dark:text-[#f1f1f1] placeholder-[#000000]/30 dark:placeholder-[#f1f1f1]/30 pl-10 pr-4 py-3 rounded-xl border border-[#152D62]/10 dark:border-[#152D62]/30 focus:outline-none focus:border-[#A67C00] dark:focus:border-[#A67C00] transition-colors">
+                        <i class="fa-solid fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-[#000000]/40 dark:text-[#f1f1f1]/40"></i>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <input id="remember-me" type="checkbox" class="w-4 h-4 rounded text-[#62152d] bg-[#f1f1f1] border-[#152D62]/20 focus:ring-[#62152d] dark:bg-[#152D62]/10 dark:border-[#152D62]/30">
+                    <label for="remember-me" class="ml-2 text-xs font-medium text-[#000000]/60 dark:text-[#f1f1f1]/60 select-none">Beni Hatırla</label>
+                </div>
+                <button type="submit" class="w-full bg-[#62152d] dark:bg-[#A67C00] hover:opacity-90 text-[#ffffff] font-bold tracking-wide text-sm py-3.5 rounded-xl transition-opacity shadow-lg shadow-[#62152d]/10 dark:shadow-[#A67C00]/10 mt-2">
+                    Giriş Yap <i class="fa-solid fa-arrow-right-to-bracket ml-1.5 text-xs"></i>
+                </button>
+            </form>
+            <div class="mt-6 pt-6 border-t border-[#152D62]/10 dark:border-[#152D62]/20 text-center text-xs text-[#000000]/50 dark:text-[#f1f1f1]/50">
+                Hesabınız yok mu? 
+                <button id="switch-to-register" class="font-bold text-[#62152d] dark:text-[#A67C00] hover:underline ml-1 focus:outline-none">Kayıt Olun</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- KAYIT OL MODAL ALANI                       -->
+    <!-- ========================================== -->
+    <div id="register-modal" class="hidden fixed inset-0 z-[110] flex items-center justify-center p-4">
+        <div id="register-modal-overlay" class="absolute inset-0 bg-[#000000]/60 backdrop-blur-sm"></div>
+        <div class="w-full max-w-md bg-[#ffffff] dark:bg-[#000000] rounded-3xl border border-[#152D62]/10 dark:border-[#152D62]/20 shadow-2xl p-8 sm:p-10 transition-colors duration-300 z-10 relative max-h-[95vh] overflow-y-auto">
+            <button id="register-close-btn" class="absolute top-5 right-5 text-[#152D62] dark:text-[#f1f1f1] hover:text-[#62152d] dark:hover:text-[#A67C00] transition-colors p-1">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="text-center space-y-2 mb-6">
+                <h2 class="text-3xl font-black tracking-wider text-[#152D62] dark:text-[#f1f1f1]">MADO</h2>
+                <p class="text-xs text-[#000000]/50 dark:text-[#f1f1f1]/50 tracking-wide">Yeni Bir Hesap Oluşturun</p>
+            </div>
+            <form class="space-y-4" onsubmit="event.preventDefault();">
+                <div class="space-y-1.5">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-[#152D62] dark:text-[#A67C00]">Adınız Soyadınız</label>
+                    <div class="relative">
+                        <input type="text" placeholder="Ad Soyad" required class="w-full bg-[#f1f1f1]/50 dark:bg-[#152D62]/10 text-sm text-[#000000] dark:text-[#f1f1f1] placeholder-[#000000]/30 dark:placeholder-[#f1f1f1]/30 pl-10 pr-4 py-2.5 rounded-xl border border-[#152D62]/10 dark:border-[#152D62]/30 focus:outline-none focus:border-[#A67C00] dark:focus:border-[#A67C00] transition-colors">
+                        <i class="fa-regular fa-id-card absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-[#000000]/40 dark:text-[#f1f1f1]/40"></i>
+                    </div>
+                </div>
+                <div class="space-y-1.5">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-[#152D62] dark:text-[#A67C00]">E-Posta Adresi</label>
+                    <div class="relative">
+                        <input type="email" placeholder="Mail adresinizi girin.." required class="w-full bg-[#f1f1f1]/50 dark:bg-[#152D62]/10 text-sm text-[#000000] dark:text-[#f1f1f1] placeholder-[#000000]/30 dark:placeholder-[#f1f1f1]/30 pl-10 pr-4 py-2.5 rounded-xl border border-[#152D62]/10 dark:border-[#152D62]/30 focus:outline-none focus:border-[#A67C00] dark:focus:border-[#A67C00] transition-colors">
+                        <i class="fa-regular fa-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-[#000000]/40 dark:text-[#f1f1f1]/40"></i>
+                    </div>
+                </div>
+                <div class="space-y-1.5">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-[#152D62] dark:text-[#A67C00]">Şifre</label>
+                    <div class="relative">
+                        <input type="password" placeholder="••••••••" required class="w-full bg-[#f1f1f1]/50 dark:bg-[#152D62]/10 text-sm text-[#000000] dark:text-[#f1f1f1] placeholder-[#000000]/30 dark:placeholder-[#f1f1f1]/30 pl-10 pr-4 py-2.5 rounded-xl border border-[#152D62]/10 dark:border-[#152D62]/30 focus:outline-none focus:border-[#A67C00] dark:focus:border-[#A67C00] transition-colors">
+                        <i class="fa-solid fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-[#000000]/40 dark:text-[#f1f1f1]/40"></i>
+                    </div>
+                </div>
+                <div class="flex items-start pt-1">
+                    <input id="kvkk-agree" type="checkbox" required class="w-4 h-4 mt-0.5 rounded text-[#62152d] bg-[#f1f1f1] border-[#152D62]/20 focus:ring-[#62152d] dark:bg-[#152D62]/10 dark:border-[#152D62]/30">
+                    <label for="kvkk-agree" class="ml-2 text-[11px] leading-snug text-[#000000]/60 dark:text-[#f1f1f1]/60 select-none">
+                        <a href="#" class="underline hover:text-[#62152d] dark:hover:text-[#A67C00]">KVKK metnini</a> ve üyelik sözleşmesini okudum, kabul ediyorum.
+                    </label>
+                </div>
+                <button type="submit" class="w-full bg-[#62152d] dark:bg-[#A67C00] hover:opacity-90 text-[#ffffff] font-bold tracking-wide text-sm py-3 rounded-xl transition-opacity shadow-lg shadow-[#62152d]/10 dark:shadow-[#A67C00]/10 mt-3">
+                    Kayıt Ol <i class="fa-solid fa-user-plus ml-1.5 text-xs"></i>
+                </button>
+            </form>
+            <div class="mt-5 pt-5 border-t border-[#152D62]/10 dark:border-[#152D62]/20 text-center text-xs text-[#000000]/50 dark:text-[#f1f1f1]/50">
+                Zaten bir hesabınız var mı? 
+                <button id="switch-to-login" class="font-bold text-[#62152d] dark:text-[#A67C00] hover:underline ml-1 focus:outline-none">Giriş Yapın</button>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Kontrol Scriptleri -->
     <script>
@@ -408,27 +533,120 @@
         document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
         document.getElementById('theme-toggle-mobile').addEventListener('click', toggleTheme);
 
-        // --- Mobil Hamburger Menü Mantığı ---
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-        const menuIcon = menuBtn.querySelector('i');
 
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            if (mobileMenu.classList.contains('hidden')) {
-                menuIcon.className = 'fa-solid fa-bars text-2xl';
-            } else {
-                menuIcon.className = 'fa-solid fa-xmark text-2xl';
-            }
-        });
+        // --- Mobil Drawer Menü Kontrolü ---
+        const menuBtn = document.getElementById('menu-btn');
+        const menuCloseBtn = document.getElementById('menu-close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function openDrawer() {
+            mobileMenu.classList.remove('invisible');
+            mobileMenuOverlay.classList.remove('hidden');
+            
+            setTimeout(() => {
+                mobileMenuOverlay.classList.add('opacity-100');
+                mobileMenu.classList.remove('translate-x-full');
+            }, 10);
+            
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeDrawer() {
+            mobileMenu.classList.add('translate-x-full');
+            mobileMenuOverlay.classList.remove('opacity-100');
+            
+            setTimeout(() => {
+                mobileMenuOverlay.classList.add('hidden');
+                mobileMenu.classList.add('invisible');
+            }, 300);
+            
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        menuBtn.addEventListener('click', openDrawer);
+        menuCloseBtn.addEventListener('click', closeDrawer);
+        mobileMenuOverlay.addEventListener('click', closeDrawer);
 
         mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                menuIcon.className = 'fa-solid fa-bars text-2xl';
+            link.addEventListener('click', closeDrawer);
+        });
+
+
+        // --- MOBİL FOOTER AKORDEON (HAMBURGER) MANTIĞI (YENİ) ---
+        const accordionButtons = document.querySelectorAll('.footer-accordion-btn');
+        
+        accordionButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Sadece geniş ekran sınırının (xl) altındaysak çalıştır
+                if (window.innerWidth < 1280) {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Aç/Kapat geçiş mantığı
+                    content.classList.toggle('hidden');
+                    
+                    // İkon çevirme animasyonu
+                    if (content.classList.contains('hidden')) {
+                        icon.classList.remove('rotate-180');
+                    } else {
+                        icon.classList.add('rotate-180');
+                    }
+                }
             });
         });
+
+
+        // --- GİRİŞ VE KAYIT MODAL ALANLARI KONTROLÜ ---
+        const loginModal = document.getElementById('login-modal');
+        const registerModal = document.getElementById('register-modal');
+        
+        const loginOpenBtn = document.getElementById('login-open-btn');
+        const loginOpenBtnMobile = document.getElementById('login-open-btn-mobile');
+        const registerOpenBtn = document.getElementById('register-open-btn');
+        const registerOpenBtnMobile = document.getElementById('register-open-btn-mobile');
+        
+        const loginCloseBtn = document.getElementById('login-close-btn');
+        const loginModalOverlay = document.getElementById('login-modal-overlay');
+        const registerCloseBtn = document.getElementById('register-close-btn');
+        const registerModalOverlay = document.getElementById('register-modal-overlay');
+        
+        const switchToRegister = document.getElementById('switch-to-register');
+        const switchToLogin = document.getElementById('switch-to-login');
+
+        function closeAllModals() {
+            loginModal.classList.add('hidden');
+            registerModal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        function openLogin() {
+            closeAllModals();
+            closeDrawer(); 
+            loginModal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function openRegister() {
+            closeAllModals();
+            closeDrawer(); 
+            registerModal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        loginOpenBtn.addEventListener('click', openLogin);
+        loginOpenBtnMobile.addEventListener('click', openLogin);
+        registerOpenBtn.addEventListener('click', openRegister);
+        registerOpenBtnMobile.addEventListener('click', openRegister);
+
+        loginCloseBtn.addEventListener('click', closeAllModals);
+        loginModalOverlay.addEventListener('click', closeAllModals);
+        registerCloseBtn.addEventListener('click', closeAllModals);
+        registerModalOverlay.addEventListener('click', closeAllModals);
+
+        switchToRegister.addEventListener('click', openRegister);
+        switchToLogin.addEventListener('click', openLogin);
     </script>
 </body>
 </html>
